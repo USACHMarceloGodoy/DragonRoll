@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@import 'primeicons/primeicons.css';
+
+@font-face {
+	font-family: 'BebasNueue';
+	src: url('/fonts/BebasNeue-Regular.woff') format('woff'),
+		url('/fonts/BebasNeue-Regular.ttf') format('trutype');
+}
+
+@font-face {
+	font-family: 'HelveticaNueue';
+	src: url('/fonts/HelveticaNeueLTPro-Md.woff') format('woff'), 	 
+		url('/fonts/HelveticaNeueLTPro-Md.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'NunitoSans';
+	src: url('/fonts/NunitoSans.ttf') format('truetype');
+}
+
+body {
+	font-family: 'NunitoSans', serif;
+}

@@ -1,0 +1,28 @@
+:root {
+    /* Colores Institucionales principales */
+    --color-primary: #00A499;
+    --color-secondary: #EA7600;
+    --color-grey: #394049;
+    /* Colores Institucionales PEI 2030 */
+    --color-purple: #8C4799;
+    --color-blue: #498BCA;
+    --color-red: #c8102e;
+    --color-yellow: #eaaa00;
+
+    /* Colores para hovers - Contraste AA >=4.5:1 */
+    --color-primary-hover: #00837A;
+    --color-secondary-hover: #B95E00; //#d26a00
+    --color-red-hover: #96081b;
+    --color-blue-hover: #356a9e;    
+    --color-purple-hover: #6e3680;
+
+    /* Escala de grises */
+    --color-white: #ffffff;
+    --color-grey-1: #f4f4f4;
+    --color-grey-2: #cfd0d2;
+    --color-grey-3: #a9acb0;
+    --color-grey-4: #84888d;
+    --color-grey-5: #5e646b;
+    
+    --box-shadow: 0 2rem 3rem var(--color-grey-3);
+}

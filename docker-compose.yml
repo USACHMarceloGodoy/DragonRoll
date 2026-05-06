@@ -1,0 +1,107 @@
+# DragonRoll — orquestación completa para self-hosting.
+#
+# Servicios:
+#   - mongo:    base de datos (sin puertos expuestos al host por defecto).
+#   - backend:  API Go en :8080 (sólo accesible vía la red interna).
+#   - frontend: Nuxt SSR en :3000 (sólo vía red interna).
+#   - caddy:    reverse proxy con HTTPS automático (Let's Encrypt) en
+#               puertos 80/443 del host. Lo único expuesto a internet.
+#
+# Requisitos para HTTPS:
+#   - Tener un dominio (DuckDNS funciona) apuntando a tu IP pública.
+#   - Tener los puertos 80 y 443 redirigidos en tu router al PC casero.
+#   - Setear DRAGONROLL_DOMAIN en .env.
+#
+# Para desarrollo local (sin HTTPS), corre solo: docker compose up mongo backend frontend
+# y abres http://localhost:3000 en el browser. Caddy queda fuera.
+
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER_MONGO}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASS_MONGO}
+      MONGO_INITDB_DATABASE: ${DB_NAME_MONGO}
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      GIN_MODE: ${GIN_MODE:-release}
+      PORT: "8080"
+      DB_HOST_MONGO: mongo
+      DB_PORT_MONGO: "27017"
+      DB_NAME_MONGO: ${DB_NAME_MONGO}
+      DB_USER_MONGO: ${DB_USER_MONGO}
+      DB_PASS_MONGO: ${DB_PASS_MONGO}
+      JWT_KEY: ${JWT_KEY}
+      JWT_ALG: HS256
+      CORS_URLS: ${CORS_URLS:-http://localhost:3000}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@dragonroll.local}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      LOG_FILEPATH: /tmp/
+      LOG_FILENAME: dragonroll
+      TZ: ${TZ:-America/Santiago}
+    networks:
+      - internal
+
+  frontend:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      NUXT_PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-http://localhost:3000}
+      NUXT_PUBLIC_BACKEND_URL: ${PUBLIC_BACKEND_URL:-http://backend:8080/api/v1}
+      NUXT_PUBLIC_AUTH_URL: ${PUBLIC_AUTH_URL:-http://backend:8080/api/v1/auth}
+      NUXT_SESSION_PASSWORD: ${SESSION_PASSWORD}
+      NUXT_COOKIE_NAME: __session
+      NUXT_COOKIE_EXPIRES: "86400"
+      NODE_ENV: production
+    networks:
+      - internal
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - frontend
+      - backend
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DRAGONROLL_DOMAIN: ${DRAGONROLL_DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - internal
+    profiles: ["prod"]   # se activa con: docker compose --profile prod up -d
+
+volumes:
+  mongo_data:
+  caddy_data:
+  caddy_config:
+
+networks:
+  internal:
+    driver: bridge

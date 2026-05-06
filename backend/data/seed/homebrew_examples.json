@@ -1,0 +1,132 @@
+{
+  "_comment": "Estos son ejemplos 100% inventados para que la app tenga datos al primer arranque. No reproducen contenido oficial de WotC. Los IDs aquí son etiquetas internas que el seeder convierte a ObjectIDs y resuelve referencias entre archivos.",
+
+  "features": [
+    {
+      "tag": "centinela:juramento_solar",
+      "name": "Juramento Solar",
+      "description": "Cuando ataques a una criatura no-muerta, sumas tu mod de Carisma al daño del primer impacto del turno.",
+      "origin": "class",
+      "cost": "passive"
+    },
+    {
+      "tag": "centinela:tacto_curativo",
+      "name": "Tacto Curativo",
+      "description": "Acción: tocas a una criatura voluntaria y la curas un total de HP igual a 5 × tu nivel de Centinela. Puedes repartir esta cura entre varias criaturas en el día. Recupera con descanso largo.",
+      "origin": "class",
+      "cost": "action",
+      "uses": { "max": 5, "formula": "5 × nivel", "recharge": "long_rest" },
+      "roll_hint": "cura"
+    },
+    {
+      "tag": "centinela:aura_proteccion",
+      "name": "Aura de Protección",
+      "description": "Tú y aliados a 10 pies de ti suman tu mod de CAR a sus tiradas de salvación mientras estés consciente.",
+      "origin": "class",
+      "cost": "passive"
+    },
+    {
+      "tag": "centinela:estilo_defensa",
+      "name": "Estilo de Combate: Defensa",
+      "description": "+1 a la CA mientras lleves armadura.",
+      "origin": "class",
+      "cost": "passive"
+    },
+    {
+      "tag": "abisal:vision_oscuridad",
+      "name": "Visión en la Oscuridad",
+      "description": "Ves en tinieblas hasta 60 pies como si fuera tenue, y en oscuridad mágica como si fuera natural.",
+      "origin": "race",
+      "cost": "passive"
+    }
+  ],
+
+  "spells": [
+    {
+      "tag": "spell:luz_purificadora",
+      "name": "Luz Purificadora",
+      "level": 0,
+      "school": "evocación",
+      "casting_time": "action",
+      "range": "60 ft",
+      "components": "V",
+      "duration": "Instantáneo",
+      "description": "El objetivo hace TS de DES o sufre 1d8 de daño radiante. Sube a 2d8 al nivel 5, 3d8 al 11 y 4d8 al 17.",
+      "ritual": false,
+      "concentration": false,
+      "damage": "1d8",
+      "damage_type": "radiante",
+      "save_ability": "DES"
+    },
+    {
+      "tag": "spell:bendicion_solar",
+      "name": "Bendición Solar",
+      "level": 1,
+      "school": "encantamiento",
+      "casting_time": "action",
+      "range": "30 ft",
+      "components": "V/S/M (gota de aceite sagrado)",
+      "duration": "Concentración, 1 minuto",
+      "description": "Hasta 3 criaturas suman 1d4 a sus tiradas de ataque y de salvación durante la duración.",
+      "ritual": false,
+      "concentration": true
+    },
+    {
+      "tag": "spell:curar_heridas",
+      "name": "Curar Heridas",
+      "level": 1,
+      "school": "evocación",
+      "casting_time": "action",
+      "range": "Toque",
+      "components": "V/S",
+      "duration": "Instantáneo",
+      "description": "Cura 1d8 + tu mod de habilidad de conjuro a una criatura tocada. Sube 1d8 por nivel superior del slot usado.",
+      "higher_level": "+1d8 por nivel sobre 1.",
+      "ritual": false,
+      "concentration": false
+    }
+  ],
+
+  "races": [
+    {
+      "tag": "race:abisal",
+      "name": "Abisal",
+      "short_desc": "Linaje tocado por un pacto antiguo. Cuernos discretos, ojos opalinos.",
+      "speed": 30,
+      "size": "Mediano",
+      "ability_bonuses": [{ "stat": "CAR", "bonus": 2 }, { "stat": "INT", "bonus": 1 }],
+      "languages": ["Común", "Abisal"],
+      "trait_tags": ["abisal:vision_oscuridad"]
+    }
+  ],
+
+  "classes": [
+    {
+      "tag": "class:centinela",
+      "name": "Centinela Solar",
+      "short_desc": "Guerrero consagrado a un ideal luminoso. Combina marcialidad con leves dones curativos.",
+      "hit_die": "d10",
+      "primary_stats": ["FUE", "CAR"],
+      "save_proficient": ["FUE", "CAR"],
+      "armor_profs": ["Todas las armaduras", "Escudos"],
+      "weapon_profs": ["Armas simples", "Armas marciales"],
+      "tool_profs": [],
+      "skill_choice_count": 2,
+      "skill_choice_pool": ["athletics", "religion", "insight", "persuasion", "intimidation", "medicine"],
+      "subclass_level": 3,
+      "casting": {
+        "ability": "CAR",
+        "preparation": "prepared",
+        "ritual": false,
+        "spell_list_tags": ["spell:luz_purificadora", "spell:bendicion_solar", "spell:curar_heridas"]
+      },
+      "levels": [
+        { "level": 1, "proficiency_bonus": 2, "feature_tags": ["centinela:juramento_solar", "centinela:tacto_curativo", "centinela:estilo_defensa"], "spell_slots": [0,0,0,0,0,0,0,0,0], "cantrips_known": 0, "spells_known": 0 },
+        { "level": 2, "proficiency_bonus": 2, "feature_tags": [], "spell_slots": [2,0,0,0,0,0,0,0,0], "cantrips_known": 0, "spells_known": -1 },
+        { "level": 3, "proficiency_bonus": 2, "feature_tags": [], "spell_slots": [3,0,0,0,0,0,0,0,0], "cantrips_known": 0, "spells_known": -1 },
+        { "level": 4, "proficiency_bonus": 2, "feature_tags": [], "spell_slots": [3,0,0,0,0,0,0,0,0], "cantrips_known": 0, "spells_known": -1, "notes": "Mejora de característica" },
+        { "level": 5, "proficiency_bonus": 3, "feature_tags": ["centinela:aura_proteccion"], "spell_slots": [4,2,0,0,0,0,0,0,0], "cantrips_known": 0, "spells_known": -1 }
+      ]
+    }
+  ]
+}

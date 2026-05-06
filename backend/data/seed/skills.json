@@ -1,0 +1,22 @@
+{
+  "skills": [
+    { "name": "Acrobacias",       "code": "acrobatics",      "stat": "DES", "description": "Mantener el equilibrio, ejecutar volteretas, escapar de un agarre." },
+    { "name": "Atletismo",        "code": "athletics",       "stat": "FUE", "description": "Trepar, saltar, nadar, forcejeos cuerpo a cuerpo." },
+    { "name": "Engaño",           "code": "deception",       "stat": "CAR", "description": "Mentir convincentemente, disfrazarse, fingir intenciones." },
+    { "name": "Historia",         "code": "history",         "stat": "INT", "description": "Recordar eventos pasados, reinos, guerras y figuras históricas." },
+    { "name": "Interpretación",   "code": "performance",     "stat": "CAR", "description": "Música, actuación, danza, oratoria escénica." },
+    { "name": "Intimidación",     "code": "intimidation",    "stat": "CAR", "description": "Amenazar, coaccionar mediante presencia o palabra." },
+    { "name": "Investigación",    "code": "investigation",   "stat": "INT", "description": "Buscar pistas, deducir relaciones, analizar evidencia." },
+    { "name": "Juego de Manos",   "code": "sleight-of-hand", "stat": "DES", "description": "Trucos manuales, robar de un bolsillo, ocultar pequeños objetos." },
+    { "name": "Medicina",         "code": "medicine",        "stat": "SAB", "description": "Estabilizar moribundos, diagnosticar enfermedades, primeros auxilios." },
+    { "name": "Naturaleza",       "code": "nature",          "stat": "INT", "description": "Conocer flora, fauna, ciclos climáticos y geografía natural." },
+    { "name": "Percepción",       "code": "perception",      "stat": "SAB", "description": "Detectar presencias, escuchar a través de puertas, notar detalles." },
+    { "name": "Perspicacia",      "code": "insight",         "stat": "SAB", "description": "Leer intenciones reales, detectar mentiras, juzgar carácter." },
+    { "name": "Persuasión",       "code": "persuasion",      "stat": "CAR", "description": "Negociar, convencer con argumentos honestos, inspirar confianza." },
+    { "name": "Religión",         "code": "religion",        "stat": "INT", "description": "Conocer panteones, cultos, ritos y simbología sagrada." },
+    { "name": "Sigilo",           "code": "stealth",         "stat": "DES", "description": "Moverse sin ser detectado, ocultarse en sombras." },
+    { "name": "Supervivencia",    "code": "survival",        "stat": "SAB", "description": "Rastrear, conseguir alimento, orientarse en la naturaleza." },
+    { "name": "Trato con Animales","code":"animal-handling", "stat": "SAB", "description": "Calmar, montar, dirigir animales y bestias." },
+    { "name": "Conocimiento Arcano","code":"arcana",         "stat": "INT", "description": "Conocer hechizos, planos, criaturas mágicas y artefactos." }
+  ]
+}

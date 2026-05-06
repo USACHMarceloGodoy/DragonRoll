@@ -1,0 +1,139 @@
+@layer primevue, app;
+
+@layer app {
+  /* Colores */
+  .color-primary {
+    color: var(--color-primary);
+  }
+  .color-secondary {
+    color: var(--color-secondary);
+  }
+  .color-grey {
+    color: var(--color-grey);
+  }
+  .color-danger {
+    color: var(--color-red);
+  }
+
+  /* Botones */
+  .p-button.btn-primary {
+    --p-button-primary-background: var(--color-primary);
+    --p-button-primary-color: #fff;
+    --p-button-primary-border-color: transparent;
+    --p-button-primary-hover-background: var(--color-primary-hover);
+    --p-button-primary-hover-color: #fff;
+    --p-button-primary-hover-border-color: transparent;
+  }
+
+  .p-button.btn-primary-outline {
+    --p-button-primary-background: #fff;
+    --p-button-primary-color: var(--color-primary);
+    --p-button-primary-border-color: var(--color-primary);
+    --p-button-primary-hover-background: var(--color-primary);
+    --p-button-primary-hover-color: #fff;
+    --p-button-primary-hover-border-color: var(--color-primary);
+  }
+
+  .p-button.btn-secondary {
+    --p-button-primary-background: var(--color-secondary);
+    --p-button-primary-color: #fff;
+    --p-button-primary-border-color: transparent;
+    --p-button-primary-hover-background: var(--color-secondary-hover);
+    --p-button-primary-hover-color: #fff;
+    --p-button-primary-hover-border-color: transparent;
+    --p-button-primary-active-background: var(--color-secondary-hover);
+    --p-button-primary-active-color: #fff;
+    --p-button-primary-active-border-color: var(--color-secondary-hover);
+  }
+
+  .p-button.btn-secondary-outline {
+    --p-button-primary-background: #fff;
+    --p-button-primary-color: var(--color-secondary);
+    --p-button-primary-border-color: var(--color-secondary);
+    --p-button-primary-hover-background: var(--color-secondary);
+    --p-button-primary-hover-color: #fff;
+    --p-button-primary-hover-border-color: var(--color-secondary);
+    --p-button-primary-active-background: var(--color-secondary);
+    --p-button-primary-active-color: #fff;
+    --p-button-primary-active-border-color: var(--color-secondary);
+  }
+
+  .p-button.btn-danger {
+    --p-button-primary-background: var(--color-red);
+    --p-button-primary-color: #fff;
+    --p-button-primary-border-color: transparent;
+    --p-button-primary-hover-background: var(--color-red-hover);
+    --p-button-primary-hover-color: #fff;
+    --p-button-primary-hover-border-color: transparent;
+    --p-button-primary-active-background: var(--color-red-hover);
+    --p-button-primary-active-color: #fff;
+    --p-button-primary-active-border-color: var(--color-red-hover);
+  }
+
+  .p-button.btn-danger-outline {
+    --p-button-primary-background: #fff;
+    --p-button-primary-color: var(--color-red);
+    --p-button-primary-border-color: var(--color-red);
+    --p-button-primary-hover-background: var(--color-red);
+    --p-button-primary-hover-color: #fff;
+    --p-button-primary-hover-border-color: var(--color-red);
+    --p-button-primary-active-background: var(--color-red);
+    --p-button-primary-active-color: #fff;
+    --p-button-primary-active-border-color: var(--color-red);
+  }
+
+  .p-button.btn-blue {
+    --p-button-primary-background: var(--color-blue);
+    --p-button-primary-color: #fff;
+    --p-button-primary-border-color: transparent;
+    --p-button-primary-hover-background: var(--color-blue-hover);
+    --p-button-primary-hover-color: #fff;
+    --p-button-primary-hover-border-color: transparent;
+    --p-button-primary-active-background: var(--color-blue-hover);
+    --p-button-primary-active-color: #fff;
+    --p-button-primary-active-border-color: var(--color-blue-hover);
+  }
+
+  .p-button.btn-blue-outline {
+    --p-button-primary-background: #fff;
+    --p-button-primary-color: var(--color-blue);
+    --p-button-primary-border-color: var(--color-blue);
+    --p-button-primary-hover-background: var(--color-blue);
+    --p-button-primary-hover-color: #fff;
+    --p-button-primary-hover-border-color: var(--color-blue);
+    --p-button-primary-active-background: var(--color-blue);
+    --p-button-primary-active-color: #fff;
+    --p-button-primary-active-border-color: var(--color-blue);
+  }
+
+  .p-button.btn-purple {
+    --p-button-primary-background: var(--color-purple);
+    --p-button-primary-color: #fff;
+    --p-button-primary-border-color: transparent;
+    --p-button-primary-hover-background: var(--color-purple-hover);
+    --p-button-primary-hover-color: #fff;
+    --p-button-primary-hover-border-color: transparent;
+    --p-button-primary-active-background: var(--color-purple-hover);
+    --p-button-primary-active-color: #fff;
+    --p-button-primary-active-border-color: var(--color-purple-hover);
+  }
+
+  .p-button.btn-purple-outline {
+    --p-button-primary-background: #fff;
+    --p-button-primary-color: var(--color-purple);
+    --p-button-primary-border-color: var(--color-purple);
+    --p-button-primary-hover-background: var(--color-purple);
+    --p-button-primary-hover-color: #fff;
+    --p-button-primary-hover-border-color: var(--color-purple);
+    --p-button-primary-active-background: var(--color-purple);
+    --p-button-primary-active-color: #fff;
+    --p-button-primary-active-border-color: var(--color-purple);
+  }
+  
+  /* Toast para dispositivos móviles */
+  @media only screen and (max-width: 600px) {
+  .p-toast {
+    max-width: 90%;
+  }
+}
+}

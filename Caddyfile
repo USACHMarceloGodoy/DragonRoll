@@ -1,0 +1,38 @@
+# Caddy va a obtener un certificado HTTPS automáticamente vía Let's
+# Encrypt usando el desafío HTTP-01 (puerto 80 abierto en tu router).
+#
+# DRAGONROLL_DOMAIN debe ser tu subdominio DuckDNS (o el que sea), p.ej.
+# marcelo-dragonroll.duckdns.org. ACME_EMAIL es tu email para avisos de
+# expiración del certificado.
+
+{
+	email {$ACME_EMAIL}
+}
+
+{$DRAGONROLL_DOMAIN} {
+	encode zstd gzip
+
+	# /api/* va al backend Go.
+	handle /api/* {
+		reverse_proxy backend:8080
+	}
+
+	# Todo lo demás, al frontend Nuxt SSR.
+	handle {
+		reverse_proxy frontend:3000
+	}
+
+	# Headers de seguridad razonables para una app de DnD.
+	header {
+		# HSTS: evita downgrade a HTTP una vez establecida la conexión segura.
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		# Anti-clickjacking.
+		X-Frame-Options "SAMEORIGIN"
+		# Bloquea sniffing de tipo MIME.
+		X-Content-Type-Options "nosniff"
+		# Política conservadora de referrer.
+		Referrer-Policy "strict-origin-when-cross-origin"
+		# Quita header que delata que corres Caddy (paranoia ligera).
+		-Server
+	}
+}
